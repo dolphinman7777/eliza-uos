@@ -48,4 +48,5 @@ tsup.config.bundled_*.mjs
 
 .turbo
 
-coverage
+coverage.env
+openai.character.json
