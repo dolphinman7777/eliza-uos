@@ -8,13 +8,13 @@ export const defaultCharacter: Character = {
     modelProvider: ModelProviderName.OPENROUTER,
     settings: {
         "secrets": {
-            "OPENROUTER_API_KEY": "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",
-            "DISCORD_API_TOKEN": "",
-            "DISCORD_APPLICATION_ID": "",
-            "DISCORD_CLIENT_ID": "",
-            "TELEGRAM_BOT_TOKEN": "",
-            "SUPABASE_URL": "https://ablndzaqyvfjotdtuoib.supabase.co",
-            "SUPABASE_SERVICE_API_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFibG5kemFxeXZmam90ZHR1b2liIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczNDEzMzM1OCwiZXhwIjoyMDQ5NzA5MzU4fQ.MrCR0Vm29n-1Pc7_KD56lcT-5DdRwVKpcNdtA8JMcVY"
+            "OPENROUTER_API_KEY": process.env.OPENROUTER_API_KEY || "",
+            "DISCORD_API_TOKEN": process.env.DISCORD_API_TOKEN || "",
+            "DISCORD_APPLICATION_ID": process.env.DISCORD_APPLICATION_ID || "",
+            "DISCORD_CLIENT_ID": process.env.DISCORD_CLIENT_ID || "",
+            "TELEGRAM_BOT_TOKEN": process.env.TELEGRAM_BOT_TOKEN || "",
+            "SUPABASE_URL": process.env.SUPABASE_URL || "",
+            "SUPABASE_SERVICE_API_KEY": process.env.SUPABASE_SERVICE_API_KEY || ""
         },
         "model": "cognitivecomputations/dolphin-mixtral-8x22b",
         "voice": {
