@@ -295,32 +295,24 @@ export function getTokenForProvider(
 }
 
 function initializeDatabase(dataDir: string) {
-    if (process.env.POSTGRES_URL) {
-        elizaLogger.info("Initializing PostgreSQL connection...");
-        const db = new PostgresDatabaseAdapter({
-            connectionString: process.env.POSTGRES_URL,
-            parseInputs: true,
+    // For now, use SQLite by default
+    const filePath =
+        process.env.SQLITE_FILE ?? path.resolve(dataDir, "db.sqlite");
+    const sqliteDb = new Database(filePath);
+    const db = new SqliteDatabaseAdapter(sqliteDb);
+    
+    // Initialize the database with schema and vector extensions
+    db.init()
+        .then(() => {
+            elizaLogger.success(
+                "Successfully initialized SQLite database"
+            );
+        })
+        .catch((error) => {
+            elizaLogger.error("Failed to initialize SQLite database:", error);
         });
 
-        // Test the connection
-        db.init()
-            .then(() => {
-                elizaLogger.success(
-                    "Successfully connected to PostgreSQL database"
-                );
-            })
-            .catch((error) => {
-                elizaLogger.error("Failed to connect to PostgreSQL:", error);
-            });
-
-        return db;
-    } else {
-        const filePath =
-            process.env.SQLITE_FILE ?? path.resolve(dataDir, "db.sqlite");
-        // ":memory:";
-        const db = new SqliteDatabaseAdapter(new Database(filePath));
-        return db;
-    }
+    return db;
 }
 
 // also adds plugins from character file into the runtime
