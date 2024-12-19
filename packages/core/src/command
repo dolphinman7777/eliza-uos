@@ -1,0 +1,10 @@
+pnpm start --characters="/Users/jackdavies/UOS-agent/eliza-uos/characters/uos.json"
+
+ppnpm start --characters="path/to/your/character.json"
+
+https://discord.com/api/oauth2/authorize?client_id=1312169230447415376&permissions=0&scope=bot%20applications.commands
+
+
+
+
+cd /Users/jackdavies/UOS-agent/eliza-uos && rm -f agent/data/db.sqlite && pnpm start -- --characters=/Users/jackdavies/UOS-agent/characters/uos.json
